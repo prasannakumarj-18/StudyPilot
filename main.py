@@ -12,7 +12,7 @@ import json
 # -------------------------
 connection = oracledb.connect(
     user="system",
-    password=os.getenv("1234"),
+    password=os.getenv("ORACLE_PASSWORD"),
     dsn="localhost:1521/FREE"
 )
 
