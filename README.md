@@ -1,0 +1,53 @@
+# StudyPilot — AI Study Agent
+
+StudyPilot is an AI-powered study planning agent designed to help students plan and manage their learning effectively.
+
+## About the Project
+
+StudyPilot creates personalized study plans based on the student's subject, number of study days, and available study hours per day. Gemini AI generates a structured day-by-day plan, while Oracle Database stores the plans and tracks learning progress.
+
+## Features
+
+* Generate personalized AI study plans
+* Set study duration and daily study hours
+* Store study plans in Oracle Database
+* Track daily study progress
+* Mark study days as completed
+* View saved study plans
+* Simple and user-friendly web interface
+
+## Technology Stack
+
+* **Python**
+* **FastAPI**
+* **Google Gemini AI**
+* **Oracle Database**
+* **HTML**
+* **CSS**
+* **JavaScript**
+
+## How It Works
+
+1. Student enters the subject, number of days, and hours per day.
+2. StudyPilot sends the request to Gemini AI.
+3. Gemini generates a personalized study plan.
+4. The plan is stored in Oracle Database.
+5. Student can load the saved plan.
+6. Student marks completed study days to track progress.
+
+## Project Goal
+
+The goal of StudyPilot is to make studying more organized and personalized by using AI to create practical study schedules and track student progress.
+
+## Future Improvements
+
+* Exam-date based planning
+* Multiple subject planning
+* AI-based progress analysis
+* Study reminders and notifications
+* Difficulty-based study plans
+* Performance-based plan adjustments
+
+## Project Status
+
+**MVP Completed:** AI study-plan generation, Oracle database storage, and basic progress tracking.
