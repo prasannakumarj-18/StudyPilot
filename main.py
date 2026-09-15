@@ -80,26 +80,25 @@ def save_study_plan(
 ):
     cursor = connection.cursor()
 
-    plan_id = cursor.var(int)
-
     cursor.execute("""
         INSERT INTO study_plans
         (student_id, subject, days, hours_per_day, study_plan)
-        VALUES (:1, :2, :3, :4, :5)
-        RETURNING id INTO :6
+        VALUES (%s, %s, %s, %s, %s)
+        RETURNING id
     """, (
         student_id,
         subject,
         days,
         hours_per_day,
-        study_plan,
-        plan_id
+        study_plan
     ))
+
+    plan_id = cursor.fetchone()[0]
 
     connection.commit()
     cursor.close()
 
-    return plan_id.getvalue()[0]
+    return plan_id
 
 # -------------------------
 # Create Progress Records
@@ -111,7 +110,7 @@ def create_progress_records(plan_id: int, days: int):
         cursor.execute("""
             INSERT INTO study_progress
             (study_plan_id, day_number, status)
-            VALUES (:1, :2, :3)
+            VALUES (%s, %s, %s)
         """, (
             plan_id,
             day_number,
@@ -135,8 +134,8 @@ def complete_day(plan_id: int, day_number: int):
         UPDATE study_progress
         SET status = 'COMPLETED',
             completed_at = CURRENT_TIMESTAMP
-        WHERE study_plan_id = :1
-        AND day_number = :2
+        WHERE study_plan_id = %s
+        AND day_number = %s
     """, (
         plan_id,
         day_number
@@ -164,7 +163,7 @@ def get_progress(plan_id: int):
             COUNT(*) AS total_days,
             SUM(CASE WHEN status = 'COMPLETED' THEN 1 ELSE 0 END) AS completed_days
         FROM study_progress
-        WHERE study_plan_id = :1
+        WHERE study_plan_id = %s
     """, (plan_id,))
 
     total_days, completed_days = cursor.fetchone()
@@ -195,7 +194,7 @@ def get_progress_details(plan_id: int):
     cursor.execute("""
         SELECT day_number, status, completed_at
         FROM study_progress
-        WHERE study_plan_id = :1
+        WHERE study_plan_id = %s
         ORDER BY day_number
     """, (plan_id,))
 
@@ -244,7 +243,7 @@ def get_study_plan(plan_id: int):
             hours_per_day,
             study_plan
         FROM study_plans
-        WHERE id = :1
+        WHERE id = %s
     """, (plan_id,))
 
     row = cursor.fetchone()
@@ -257,7 +256,7 @@ def get_study_plan(plan_id: int):
         }
 
     # Convert Oracle CLOB into normal Python string
-    study_plan = row[4].read()
+    study_plan = row[4]
 
     return {
         "plan_id": row[0],
