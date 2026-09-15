@@ -3,20 +3,18 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from google import genai
 import os
-import oracledb
+import psycopg2
 from dotenv import load_dotenv
 load_dotenv()
 import json
 # -------------------------
-# Oracle Database
+# PostgreSQL Database
 # -------------------------
-connection = oracledb.connect(
-    user="system",
-    password=os.getenv("ORACLE_PASSWORD"),
-    dsn="localhost:1521/FREE"
+connection = psycopg2.connect(
+    os.getenv("DATABASE_URL")
 )
 
-print("Oracle Database connected successfully!")
+print("PostgreSQL Database connected successfully!")
 
 app = FastAPI()
 app.add_middleware(
