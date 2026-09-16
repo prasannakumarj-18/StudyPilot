@@ -4,6 +4,11 @@ body {
     margin: 40px auto;
     padding: 20px;
     background: #f5f7fb;
+    box-sizing: border-box;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 h1 {
@@ -23,12 +28,12 @@ h2 {
 input {
     padding: 10px;
     width: 250px;
+    max-width: 100%;
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 6px;
 }
 
-body > button,
 button {
     padding: 10px 16px;
     border: none;
@@ -82,4 +87,63 @@ hr {
     border: none;
     border-top: 1px solid #ddd;
     margin-top: 20px;
+}
+
+
+/* Mobile Responsive Design */
+
+@media (max-width: 600px) {
+
+    body {
+        margin: 0;
+        padding: 15px;
+        width: 100%;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 22px;
+        margin-top: 25px;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+
+    #plan > div {
+        padding: 15px;
+        margin-top: 15px;
+    }
+
+    #plan h3 {
+        font-size: 20px;
+    }
+
+    #plan h4 {
+        font-size: 17px;
+    }
+
+    #plan p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    #progressBox {
+        padding: 15px;
+    }
+
+    progress {
+        height: 22px;
+    }
 }
