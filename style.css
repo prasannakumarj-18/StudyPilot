@@ -1,14 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     max-width: 900px;
     margin: 40px auto;
     padding: 20px;
     background: #f5f7fb;
-    box-sizing: border-box;
-}
-
-* {
-    box-sizing: border-box;
 }
 
 h1 {
@@ -89,7 +88,6 @@ hr {
     margin-top: 20px;
 }
 
-
 /* Mobile Responsive Design */
 
 @media (max-width: 600px) {
@@ -98,6 +96,7 @@ hr {
         margin: 0;
         padding: 15px;
         width: 100%;
+        max-width: 100%;
     }
 
     h1 {
@@ -105,7 +104,7 @@ hr {
     }
 
     h2 {
-        font-size: 22px;
+        font-size: 21px;
         margin-top: 25px;
     }
 
